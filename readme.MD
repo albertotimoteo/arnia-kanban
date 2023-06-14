@@ -1,6 +1,7 @@
 # Descrição das entidades do banco de dados
 
 URL da api: [https://arnia-kanban.vercel.app/](https://arnia-kanban.vercel.app/)
+Documentação API: [Clique aqui](https://drive.google.com/file/d/1aTHbfYA6azh6Thv28CKEJ1KtklDkNccR/view?usp=drive_link)
 
 ## Entidade "Usuário"
 
