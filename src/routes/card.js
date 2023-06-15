@@ -31,8 +31,9 @@ router.post("/", async (req, res) => {
   })
 
   try {
-    const newCard = await card.save()
-    res.status(201).json(newCard)
+    await card.save()
+    const cards = await Card.find({ userId: req.userId })
+    res.json(cards)
   } catch (err) {
     res.status(400).json({ message: err.message })
   }
@@ -53,8 +54,9 @@ router.put("/:id", getCard, async (req, res) => {
   }
 
   try {
-    const updatedCard = await res.card.save()
-    res.json(updatedCard)
+    await res.card.save()
+    const cards = await Card.find({ userId: req.userId })
+    res.json(cards)
   } catch (err) {
     res.status(400).json({ message: err.message })
   }
@@ -64,7 +66,8 @@ router.put("/:id", getCard, async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     await Card.findByIdAndRemove(req.params.id)
-    res.json({ message: "Card deleted" })
+    const cards = await Card.find({ userId: req.userId })
+    res.json(cards)
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
