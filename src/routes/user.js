@@ -21,7 +21,7 @@ router.post("/login", async (req, res) => {
     }
 
     const token = auth.generateToken(user)
-    return res.json({ token })
+    return res.json({ token, name: user.name })
   } catch (err) {
     console.log(err)
     return res.status(500).json({ message: "Erro ao processar a requisição." })
