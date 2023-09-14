@@ -32,6 +32,15 @@ router.post("/", async (req, res) => {
   try {
     const { email, password, name } = req.body
     const encryptedPassword = await bcrypt.hash(password, 10)
+
+    const user = await User.findOne({ email })
+    if (user) {
+      res
+        .status(400)
+        .json({ message: "E-mail já está cadastrado na base de dados" })
+      return
+    }
+
     await User.create({ email, password: encryptedPassword, name })
     res.status(201).json({ message: "Created" })
   } catch (err) {
